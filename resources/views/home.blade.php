@@ -59,13 +59,13 @@
 
                 </li>
                 @can('view_licensee')
-                <li ><a href="{{route('licensee.index')}}"><i class="fa fa-id-card"></i>Licensee</a></li>
+                <li ><a href="{{route('licensee.index')}}"><i class="fa fa-id-card"></i><span class="nav-label">Licensee</span></a></li>
                 @endcan
                 @can('view_only_inspector_licensee')
-                <li ><a href="{{route('view-assigned-licensees')}}"><i class="fa fa-id-card"></i>Licensee</a></li>
+                <li ><a href="{{route('view-assigned-licensees')}}"><i class="fa fa-id-card"></i><span class="nav-label">Licensee</span></a></li>
                 @endcan
                 @can('view_all_inspectors')
-                <li><a href="{{route('inspector.index')}}"><i class="fa fa-user"></i>Inspector</a></li>
+                <li><a href="{{route('inspector.index')}}"><i class="fa fa-user"></i><span class="nav-label">Inspector</span></a></li>
                 @endcan
                 <li>
                     <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
