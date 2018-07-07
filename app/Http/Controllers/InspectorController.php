@@ -51,9 +51,12 @@ class InspectorController extends Controller
         if (!$form->isValid()){
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-        $user=User::create($request->all());
         $data=$request->all();
+        $data['password']=bcrypt($data['password']);
+        $user=User::create($data);
+        $user->assignRole('inspector');
         $data['user_id']=$user->id;
+
         Inspector::create($data);
         return redirect()->route('inspector.index')->with(['success'=>'Inspector created successfully']);
 

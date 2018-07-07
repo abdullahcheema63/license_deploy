@@ -185,12 +185,19 @@ return [
 //        ],
         [
             'text'=>'Inspector',
-            'route'=>'inspector.index'
+            'route'=>'inspector.index',
+            'can'=>'view_all_inspectors'
         ],
         [
             'text'=>'Licensee',
-            'route'=>'licensee.index'
+            'route'=>'licensee.index',
+            'can'=>'view_licensee'
         ],
+        [
+            'text'=>'Licensee',
+            'can'=>'view_only_inspector_licensee',
+            'route'=>'view-assigned-licensees'
+        ]
     ],
 
     /*

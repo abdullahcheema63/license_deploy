@@ -1,15 +1,25 @@
-@extends("adminlte::page")
-@section('content_header')
-    <h1>Create Licensee</h1>
+@extends("layouts.inspinia")
+@section('title','Create Licensee')
+
+@section('menu')
+    @can('view_licensee')
+        <li class="active"><a href="{{route('licensee.index')}}"><i class="fa fa-id-card"></i>Licensee</a></li>
+    @endcan
+    @can('view_only_inspector_licensee')
+        <li class="active"><a href="{{route('view-assigned-licensees')}}"><i class="fa fa-id-card"></i>Licensee</a></li>
+    @endcan
+    @can('view_all_inspectors')
+        <li><a href="{{route('inspector.index')}}"><i class="fa fa-user"></i>Inspector</a></li>
+    @endcan
 @stop
 @section('content')
-    <div class="container-fluid">
-        <div class="col-md-4">
-            <div class="box box-primary">
-                <div class="box-body">
+
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-content">
                     {!! form($form) !!}
                 </div>
             </div>
         </div>
-    </div>
+
 @stop

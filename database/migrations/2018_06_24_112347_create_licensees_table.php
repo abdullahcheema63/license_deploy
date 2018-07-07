@@ -21,7 +21,11 @@ class CreateLicenseesTable extends Migration
             $table->date('dob');
             $table->integer('status');
             $table->string('area');
+            $table->text('remarks')->nullable();
             $table->unsignedInteger('inspector_id')->nullable();
+            $table->boolean('requirement_1');
+            $table->boolean('requirement_2');
+            $table->boolean('requirement_3');
             $table->timestamps();
             $table->foreign('inspector_id')->references('id')->on('inspectors');
         });

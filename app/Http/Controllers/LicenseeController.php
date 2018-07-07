@@ -53,6 +53,10 @@ class LicenseeController extends Controller
         }
         $data=$request->all();
         $data['status']=1;
+        $data["requirement_1"]=false;
+        $data["requirement_2"]=false;
+        $data["requirement_3"]=false;
+
         Licensee::create($data);
         return redirect()->route('licensee.index')->with(['success'=>'licensee created successfully']);
     }
@@ -74,9 +78,15 @@ class LicenseeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,FormBuilder $formBuilder)
     {
         //
+        $form=$formBuilder->create(LicenseeForm::class,[
+            'method'=>'PUT',
+            'url'=>route('licensee.update',$id),
+            'model'=>Licensee::find($id)
+        ]);
+        return view('licensee.form',compact('form'));
     }
 
     /**
@@ -86,9 +96,16 @@ class LicenseeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id,FormBuilder $formBuilder)
     {
         //
+        $form=$formBuilder->create(LicenseeForm::class);
+        if (!$form->isValid()){
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+        $data=$request->all();
+        Licensee::find($id)->update($data);
+        return redirect()->route('licensee.index')->with(['success'=>'licensee updated successfully']);
     }
 
     /**
@@ -107,5 +124,22 @@ class LicenseeController extends Controller
         $licensee->update(['inspector_id'=>$request['inspector_id'],'status'=>2]);
 
         return redirect()->back()->with(['success'=>'Inspector Assigned Successfully']);
+    }
+    public function disapprove($id){
+        $licensee=Licensee::find($id);
+        $licensee->update(['status'=>3]);
+
+        return redirect()->back()->with(['error'=>'Disapproved Successfully']);
+    }
+    public function approve(Request $request,$id){
+        $licensee=Licensee::find($id);
+        $requirement_1=false;
+        $requirement_2=false;
+        $requirement_3=false;
+        if ($request->requirement_1)$requirement_1=true;
+        if ($request->requirement_2)$requirement_2=true;
+        if ($request->requirement_3)$requirement_3=true;
+        $licensee->update(['status'=>4,'remarks'=>$request->remarks,'requirement_1'=>$requirement_1,'requirement_2'=>$requirement_2,'requirement_3'=>$requirement_3]);
+        return redirect()->back()->with(['success'=>'Approved Successfully']);
     }
 }
