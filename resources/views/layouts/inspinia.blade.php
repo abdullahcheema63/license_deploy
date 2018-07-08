@@ -14,7 +14,20 @@
     <link href="{{url('css/animate.css')}}" rel="stylesheet">
     <link href="{{url('css/style.css')}}" rel="stylesheet">
     <link href="{{url('css/plugins/dataTables/datatables.min.css')}}" rel="stylesheet">
+    
+    <!-- Mainly scripts -->
+    <script src="{{url('js/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{url('js/bootstrap.min.js')}}"></script>
+    <script src="{{url('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+    <script src="{{url('js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
+    <!-- Custom and plugin javascript -->
+
+    <script src="{{url('js/plugins/pace/pace.min.js')}}"></script>
+    <script src="{{url('js/plugins/dataTables/datatables.min.js')}}"></script>
+    <script src="{{url('js/plugins/pace/pace.min.js')}}"></script>
+    <script src="{{url('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{url('js/inspinia.js')}}"></script>
 </head>
 
 <body class="">
@@ -402,19 +415,6 @@
 
     </div>
 </div>
-<script src="{{url('js/inspinia.js')}}"></script>
-<!-- Mainly scripts -->
-<script src="{{url('js/jquery-3.1.1.min.js')}}"></script>
-<script src="{{url('js/bootstrap.min.js')}}"></script>
-<script src="{{url('js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-<script src="{{url('js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-
-<!-- Custom and plugin javascript -->
-
-<script src="{{url('js/plugins/pace/pace.min.js')}}"></script>
-<script src="{{url('js/plugins/dataTables/datatables.min.js')}}"></script>
-<script src="{{url('js/plugins/pace/pace.min.js')}}"></script>
-<script src="{{url('js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
 @yield('js')
 
