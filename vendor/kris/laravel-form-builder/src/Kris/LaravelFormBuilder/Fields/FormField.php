@@ -203,7 +203,9 @@ abstract class FormField
                 'options' => $this->options,
                 'showLabel' => $showLabel,
                 'showField' => $showField,
-                'showError' => $showError
+                'showError' => $showError,
+                'errorBag'  => $this->parent->getErrorBag(),
+                'translationTemplate' => $this->parent->getTranslationTemplate(),
             ]
         )->render();
     }
@@ -529,13 +531,22 @@ abstract class FormField
     protected function addErrorClass()
     {
         $errors = $this->parent->getRequest()->session()->get('errors');
+        $errorBag = $this->parent->getErrorBag();
 
-        if ($errors && $errors->has($this->getNameKey())) {
-            $errorClass = $this->formHelper->getConfig('defaults.wrapper_error_class');
+        if ($errors && $errors->hasBag($errorBag) && $errors->getBag($errorBag)->has($this->getNameKey())) {
+            $fieldErrorClass = $this->formHelper->getConfig('defaults.field_error_class');
+            $fieldClass = $this->getOption('attr.class');
+
+            if ($fieldErrorClass && !str_contains($fieldClass, $fieldErrorClass)) {
+                $fieldClass .= ' ' . $fieldErrorClass;
+                $this->setOption('attr.class', $fieldClass);
+            }
+
+            $wrapperErrorClass = $this->formHelper->getConfig('defaults.wrapper_error_class');
             $wrapperClass = $this->getOption('wrapper.class');
 
-            if ($this->getOption('wrapper') && !str_contains($wrapperClass, $errorClass)) {
-                $wrapperClass .= ' ' . $errorClass;
+            if ($wrapperErrorClass && $this->getOption('wrapper') && !str_contains($wrapperClass, $wrapperErrorClass)) {
+                $wrapperClass .= ' ' . $wrapperErrorClass;
                 $this->setOption('wrapper.class', $wrapperClass);
             }
         }
@@ -593,7 +604,13 @@ abstract class FormField
             return;
         }
 
-        if ($langName = $this->parent->getLanguageName()) {
+        if ($template = $this->parent->getTranslationTemplate()) {
+            $label = str_replace(
+                ['{name}', '{type}'],
+                [$this->getRealName(), 'label'],
+                $template
+            );
+        } elseif ($langName = $this->parent->getLanguageName()) {
             $label = sprintf('%s.%s', $langName, $this->getRealName());
         } else {
             $label = $this->getRealName();
@@ -669,7 +686,7 @@ abstract class FormField
         }
 
         if (is_array($rules)) {
-            $rules = array_map(function($rule) {
+            $rules = array_map(function ($rule) use ($name) {
                 if ($rule instanceof \Closure) {
                     return $rule($name);
                 }

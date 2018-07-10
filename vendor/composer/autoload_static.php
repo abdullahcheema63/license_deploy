@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0b93e7f29350aece2077f4c2e336de5e
+class ComposerStaticInitc6e2c6638231381968357395976d6f58
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -373,7 +373,6 @@ class ComposerStaticInit0b93e7f29350aece2077f4c2e336de5e
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'App\\Requirements' => __DIR__ . '/../..' . '/app/Requirements.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
@@ -3691,6 +3690,7 @@ class ComposerStaticInit0b93e7f29350aece2077f4c2e336de5e
         'Symfony\\Component\\VarDumper\\Dumper\\HtmlDumper' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/HtmlDumper.php',
         'Symfony\\Component\\VarDumper\\Dumper\\ServerDumper' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/ServerDumper.php',
         'Symfony\\Component\\VarDumper\\Exception\\ThrowingCasterException' => __DIR__ . '/..' . '/symfony/var-dumper/Exception/ThrowingCasterException.php',
+        'Symfony\\Component\\VarDumper\\Server\\Connection' => __DIR__ . '/..' . '/symfony/var-dumper/Server/Connection.php',
         'Symfony\\Component\\VarDumper\\Server\\DumpServer' => __DIR__ . '/..' . '/symfony/var-dumper/Server/DumpServer.php',
         'Symfony\\Component\\VarDumper\\Test\\VarDumperTestTrait' => __DIR__ . '/..' . '/symfony/var-dumper/Test/VarDumperTestTrait.php',
         'Symfony\\Component\\VarDumper\\VarDumper' => __DIR__ . '/..' . '/symfony/var-dumper/VarDumper.php',
@@ -3811,10 +3811,10 @@ class ComposerStaticInit0b93e7f29350aece2077f4c2e336de5e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0b93e7f29350aece2077f4c2e336de5e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0b93e7f29350aece2077f4c2e336de5e::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit0b93e7f29350aece2077f4c2e336de5e::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit0b93e7f29350aece2077f4c2e336de5e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc6e2c6638231381968357395976d6f58::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc6e2c6638231381968357395976d6f58::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitc6e2c6638231381968357395976d6f58::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitc6e2c6638231381968357395976d6f58::$classMap;
 
         }, null, ClassLoader::class);
     }
